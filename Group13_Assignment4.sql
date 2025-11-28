@@ -97,7 +97,9 @@ CREATE TABLE INDIVID_W (
   Location VARCHAR(30) NOT NULL,
   Lname VARCHAR(25) NOT NULL,
   Country VARCHAR(30) NOT NULL,
-  PRIMARY KEY (Lname)
+  PRIMARY KEY (Lname),
+  FOREIGN KEY (Country) REFERENCES COUNTRY(CName),
+  
 );
 
 INSERT INTO INDIVID_W(EventDate, Location, Lname, Country)
