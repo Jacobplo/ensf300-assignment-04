@@ -1,23 +1,23 @@
-# 1.
+-- 1.
 SELECT Fname, Lname, Country
 FROM PARTICIPANT P, ATHLETE A
 WHERE P.OlympicID=A.OlympicID;
 
 
-# 2.
+-- 2.
 SELECT Fname, Lname, Country
 FROM PARTICIPANT P, COACH C
 WHERE P.OlympicID=C.OlympicID AND Orientation="Pending";
 
 
-# 3.
+-- 3.
 SELECT Country, COUNT(*)
 FROM PARTICIPANT P, ATHLETE A, COUNTRY
 WHERE P.OlympicID=A.OlympicID AND CName=Country
 GROUP BY Country;
 
 
-# 4.
+-- 4.
 SELECT P.OlympicID, BirthYear
 FROM ((PARTICIPANT P LEFT OUTER JOIN 
        ATHLETE A ON P.OlympicID=A.OlympicID) LEFT OUTER JOIN 
@@ -25,7 +25,7 @@ FROM ((PARTICIPANT P LEFT OUTER JOIN
 ORDER BY BirthYear ASC;
 
 
-# 5.
+-- 5.
 SELECT Country
 FROM PARTICIPANT P, ATHLETE A, COUNTRY
 WHERE P.OlympicID=A.OlympicID AND CName=Country
@@ -33,7 +33,7 @@ GROUP BY Country
 HAVING COUNT(*) > 1;
 
 
-# 6. 
+-- 6. 
 (SELECT Fname, Lname
 FROM (PARTICIPANT NATURAL JOIN ATHLETE), INDIVIDUAL_RESULTS R
 WHERE R.Olympian=OlympicID)
@@ -44,13 +44,13 @@ FROM (PARTICIPANT NATURAL JOIN ATHLETE),
 WHERE OlympicID IN (Member1, Member2, Member3, Member4, Member5, Member6));
 
 
-# 7.
+-- 7.
 SELECT CName
 FROM COUNTRY
 WHERE (AllTimeGold+AllTimeSilver+AllTimeBronze)>=5;
 
 
-# 8.
+-- 8.
 SELECT Country, COUNT(*)
 FROM ((SELECT Country
       FROM (PARTICIPANT JOIN INDIVIDUAL_RESULTS ON OlympicID=Olympian))
@@ -63,13 +63,13 @@ FROM ((SELECT Country
 GROUP BY Country;
 
 
-# 9.
+-- 9.
 SELECT Fname, Lname
 FROM (PARTICIPANT NATURAL JOIN ATHLETE)
 WHERE FirstGames="Tokyo 2020";
 
 
-# 10.
+-- 10.
 (SELECT Fname, Lname, BirthYear
 FROM (PARTICIPANT NATURAL JOIN ATHLETE)
 WHERE BirthYear=(SELECT MAX(BirthYear) FROM ATHLETE))
@@ -79,7 +79,7 @@ FROM (PARTICIPANT NATURAL JOIN ATHLETE)
 WHERE BirthYear=(SELECT MIN(BirthYear) FROM ATHLETE));
 
 
-# 11.
+-- 11.
 DROP VIEW IF EXISTS TEAM_ATHLETES;
 CREATE VIEW TEAM_ATHLETES
 AS SELECT Fname, Lname, BirthYear
@@ -90,7 +90,7 @@ SELECT *
 FROM TEAM_ATHLETES;
 
 
-# 12.
+-- 12.
 DROP TABLE IF EXISTS INDIVID_W;
 CREATE TABLE INDIVID_W (
   EventDate VARCHAR(15) NOT NULL,
@@ -98,8 +98,7 @@ CREATE TABLE INDIVID_W (
   Lname VARCHAR(25) NOT NULL,
   Country VARCHAR(30) NOT NULL,
   PRIMARY KEY (Lname),
-  FOREIGN KEY (Country) REFERENCES COUNTRY(CName),
-  
+  FOREIGN KEY (Country) REFERENCES COUNTRY(CName)
 );
 
 INSERT INTO INDIVID_W(EventDate, Location, Lname, Country)
