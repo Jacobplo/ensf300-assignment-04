@@ -56,7 +56,10 @@ FROM ((SELECT Country
       FROM (PARTICIPANT JOIN INDIVIDUAL_RESULTS ON OlympicID=Olympian))
       UNION ALL
       (SELECT Country
-      FROM (TEAM JOIN TEAM_RESULTS ON Team=TeamID) JOIN PARTICIPANT ON OlympicID=Member1)     ) AS ALL_RESULTS
+      FROM (TEAM JOIN 
+            TEAM_RESULTS ON Team=TeamID) JOIN 
+            PARTICIPANT ON OlympicID=Member1)
+     ) AS ALL_RESULTS
 GROUP BY Country;
 
 
