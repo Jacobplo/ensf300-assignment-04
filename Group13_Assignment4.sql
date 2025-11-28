@@ -36,12 +36,12 @@ HAVING COUNT(*) > 1;
 # 6. 
 (SELECT Fname, Lname
 FROM (PARTICIPANT NATURAL JOIN ATHLETE), INDIVIDUAL_RESULTS R
-WHERE R.Olympian=P.OlympicID)
+WHERE R.Olympian=OlympicID)
 UNION DISTINCT
 (SELECT Fname, Lname
 FROM (PARTICIPANT NATURAL JOIN ATHLETE), 
      (TEAM JOIN TEAM_RESULTS ON Team=TeamID)
-WHERE A.OlympicID IN (Member1, Member2, Member3, Member4, Member5, Member6));
+WHERE OlympicID IN (Member1, Member2, Member3, Member4, Member5, Member6));
 
 
 # 7.
