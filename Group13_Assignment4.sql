@@ -109,4 +109,22 @@ INSERT INTO INDIVID_W(EventDate, Location, Lname, Country)
 SELECT *
 FROM INDIVID_W;
 
+-- Q13 :
+-- This INSERT will fail because 'T2020_046' does not exist in the
+-- PARTICIPANT table. COACH.OlympicID is a foreign key referencing
+-- PARTICIPANT(OlympicID), so inserting a coach with an unknown ID
+-- violates referential integrity.
+
+-- Q14:
+-- This DELETE will fail because OlympicID 'T2020_001' is referenced by
+-- other tables (ATHLETE, TEAM, INDIVIDUAL_RESULTS). Since there is no
+-- ON DELETE CASCADE, the database prevents the deletion to maintain
+-- referential integrity.
+
+-- Q15:
+-- A possible constraint for the TEAM table would be to ensure that all
+-- members of a team come from the same country. This requires checking
+-- the PARTICIPANT table, because that's where each member's Country is
+-- stored.
+
 
